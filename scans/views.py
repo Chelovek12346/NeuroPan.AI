@@ -7,13 +7,11 @@ from ml.predictor import analyze_scan
 
 
 def landing_view(request):
-    # красивая лендинг-страница NeuroPan.AI
     return render(request, 'scans/landing.html')
 
 
 @login_required
 def dashboard_view(request):
-    # список прошлых анализов + выбор режима
     scans = Scan.objects.filter(user=request.user).order_by('-uploaded_at')
     return render(request, 'scans/dashboard.html', {'scans': scans})
 
@@ -32,7 +30,7 @@ def analyze_view(request, modality):
             scan.modality = modality
             scan.save()
 
-            # тут вызываем stub-модель
+
             result = analyze_scan(scan.file.path, scan.modality)
             scan.result = result
             scan.save()

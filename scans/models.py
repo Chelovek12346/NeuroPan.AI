@@ -13,7 +13,6 @@ class Scan(models.Model):
     file = models.FileField(upload_to='scans/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
-    # результат анализа – как JSON (проценты, стадия и т.д.), может быть null
     result = models.JSONField(null=True, blank=True)
 
     def __str__(self):

@@ -1,13 +1,11 @@
 def analyze_scan(file_path: str, modality: str) -> dict:
     """
-    file_path: путь к загруженному файлу (CT / MRI)
-    modality: 'ct' или 'mri'
-
-    Возвращает словарь с "результатами анализа".
-    Сейчас – заглушка. ML-человек заменит на свою модель.
+    file_path: путь к загруженному файлу(CT/MRI)
+    modality:'ct' или 'mri'
+    Сейчас – заглушка. Даник здесь походу на свою модель заменишь
     """
 
-    # TODO: заменить на реальный анализ с моделью
+    # TODO: Замени на реальный анализ с моделью
     fake_result = {
         "cancer_probability": 0.27,   # от 0 до 1
         "stage": "N/A (research only)",

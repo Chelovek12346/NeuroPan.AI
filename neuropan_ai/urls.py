@@ -7,7 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('accounts/', include('accounts.urls')),
-    path('', include('scans.urls')),  # главная и остальное – в scans
+    path('', include('scans.urls')),
 ]
 
 if settings.DEBUG:
