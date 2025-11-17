@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+        <div class="hero-badge">
+            Pancreatic cancer early detection • Research prototype
+        </div>
+
+        <h1 class="hero-title">NeuroPan.AI</h1>
+
+        <p class="hero-subtitle">
+            AI-detector for pancreatic cancer diagnosis in CT/MRI images
+        </p>
+
+        <p class="hero-tagline">
+            Quickly and accurately detect pancreatic cancer in its early stages with Us.
+            <span>Save your life while you still can.</span>
+        </p>
+
+        <div class="hero-actions">
+            {% if user.is_authenticated %}
+                <a class="btn btn-primary" href="{% url 'dashboard' %}">Go to dashboard</a>
+            {% else %}
+                <a class="btn btn-primary" href="{% url 'register' %}">Get started</a>
+                <a class="btn btn-ghost" href="{% url 'login' %}">I already have an account</a>
+            {% endif %}
+        </div>
+
+        <p class="hero-disclaimer">
+            NeuroPan.AI - an AI assistant for doctors in cancer diagnosis.
+        </p>
+    </div>
+</section>
+{% endblock %}
+

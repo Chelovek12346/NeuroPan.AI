@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page page-narrow auth-page">
+    <div class="auth-card">
+        <h1 class="page-title">Welcome back</h1>
+        <p class="page-subtitle">
+            Log in to continue exploring NeuroPan.AI research analysis.
+        </p>
+
+        <form method="post" class="form">
+            {% csrf_token %}
+            <div class="form-field">
+                <label for="id_username">Username</label>
+                <input id="id_username" type="text" name="username" autocomplete="username" required>
+            </div>
+            <div class="form-field">
+                <label for="id_password">Password</label>
+                <input id="id_password" type="password" name="password" autocomplete="current-password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">Log in</button>
+        </form>
+
+        <p class="auth-switch">
+            No account?
+            <a href="{% url 'register' %}">Sign up</a>
+        </p>
+    </div>
+</section>
+{% endblock %}
+

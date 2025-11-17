@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page">
+    <header class="page-header">
+        <div>
+            <h1 class="page-title">Dashboard</h1>
+            <p class="page-subtitle">
+                Start a new CT / MRI analysis or revisit your previous scans.
+            </p>
+        </div>
+    </header>
+
+    <div class="cards-grid">
+        <article class="card card-highlight">
+            <h2>CT scan analysis</h2>
+            <p>
+                Upload a CT scan for experimental early pancreatic cancer analysis.
+            </p>
+            <a class="btn btn-primary" href="{% url 'analyze' 'ct' %}">
+                Analyze CT scan
+            </a>
+        </article>
+
+        <article class="card card-highlight">
+            <h2>MRI analysis</h2>
+            <p>
+                Upload an MRI scan for experimental evaluation and pattern detection.
+            </p>
+            <a class="btn btn-primary" href="{% url 'analyze' 'mri' %}">
+                Analyze MRI
+            </a>
+        </article>
+    </div>
+
+    <section class="panel">
+        <div class="panel-header">
+            <h2>Your previous scans</h2>
+            <p class="panel-subtitle">
+                All analyses are stored under your account for research purposes only.
+            </p>
+        </div>
+
+        {% if scans %}
+            <div class="table-wrapper">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Result</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for scan in scans %}
+                        <tr>
+                            <td>{{ scan.uploaded_at }}</td>
+                            <td>{{ scan.get_modality_display }}</td>
+                            <td>
+                                {% if scan.result %}
+                                    <a href="{% url 'scan_result' scan.pk %}">View</a>
+                                {% else %}
+                                    Pending
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="empty-state">
+                No scans yet. Start by uploading a CT or MRI scan above.
+            </p>
+        {% endif %}
+    </section>
+</section>
+{% endblock %}
+
