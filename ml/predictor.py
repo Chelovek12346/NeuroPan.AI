@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from .model import *
 from PIL import Image
 from torchvision import transforms
@@ -8,6 +9,8 @@ transform = transforms.Compose([
 ])
 
 
+=======
+>>>>>>> 3b382c45da8323694f1fe1498ba7637366756a68
 def analyze_scan(file_path: str, modality: str) -> dict:
     """
     file_path: путь к загруженному файлу(CT/MRI)
@@ -15,6 +18,7 @@ def analyze_scan(file_path: str, modality: str) -> dict:
     Сейчас – заглушка. Даник здесь походу на свою модель заменишь
     """
 
+<<<<<<< HEAD
     img = Image.open(file_path).convert("RGB")
     img_tensor = transform(img)  # [3, 128, 128]
     img_tensor = img_tensor.unsqueeze(0)  # [1, 3, 128, 128]
@@ -46,4 +50,16 @@ def analyze_scan(file_path: str, modality: str) -> dict:
                 "For any health concerns, consult a qualified physician."
             )
         }
+=======
+    # TODO: Замени на реальный анализ с моделью
+    fake_result = {
+        "cancer_probability": 0.27,   # от 0 до 1
+        "stage": "N/A (research only)",
+        "tumor_type": "N/A (placeholder)",
+        "recommendation": (
+            "Undergo further and more in-depth examinations with a doctor for a final diagnosis. "
+            "For any health concerns, consult a qualified physician."
+        )
+    }
+>>>>>>> 3b382c45da8323694f1fe1498ba7637366756a68
     return fake_result

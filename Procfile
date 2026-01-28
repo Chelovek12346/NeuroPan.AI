@@ -1,0 +1,1 @@
+web: gunicorn neuropan_ai.wsgi
