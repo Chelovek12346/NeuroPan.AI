@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page page-result">
+    <header class="page-header">
+        <div>
+            <h1 class="page-title">Analysis result</h1>
+            <p class="page-subtitle">
+                AI output based on your {{ scan.get_modality_display }}:
+            </p>
+        </div>
+    </header>
+
+    {% if scan.result %}
+        <article class="result-card">
+            <div class="result-meta">
+                <p><span>Modality</span> {{ scan.get_modality_display }}</p>
+                <p><span>Uploaded at</span> {{ scan.uploaded_at }}</p>
+            </div>
+
+            <h2 class="result-title">AI output (research only)</h2>
+
+
+            <div class="result-section">
+                <p><span class="result-label">Stage</span> {{ scan.result.stage }}</p>
+                <p><span class="result-label">Recommendation</span> {{ scan.result.recommendation }}</p>
+            </div>
+
+            <div class="warning">
+                This analysis is part of a research prototype and must not be used for
+                diagnosis or treatment decisions. Always consult a qualified physician.
+            </div>
+        </article>
+    {% else %}
+        <p class="empty-state">
+            No result stored for this scan.
+        </p>
+    {% endif %}
+
+    <a class="btn btn-ghost" href="{% url 'dashboard' %}">Back to dashboard</a>
+</section>
+{% endblock %}
+

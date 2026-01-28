@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page">
+    <header class="page-header">
+        <div>
+            <h1 class="page-title">Analyze {{ modality|upper }} scan</h1>
+            <p class="page-subtitle">
+                Securely upload your {{ modality|upper }} file. The analysis is part of a research
+                prototype and is not a clinical diagnosis.
+            </p>
+        </div>
+    </header>
+
+    <section class="panel">
+        <div class="panel-header">
+            <h2>Upload your scan</h2>
+            <p class="panel-subtitle">
+                Drag &amp; drop a DICOM or image file, or click the area to select it.
+            </p>
+        </div>
+
+        <div id="dropzone" class="dropzone">
+            <p class="dropzone-title">
+                Drag &amp; drop your {{ modality|upper }} file here
+            </p>
+            <p class="dropzone-subtitle">
+                or click to browse from your device
+            </p>
+        </div>
+
+        <form id="upload-form" method="post" enctype="multipart/form-data" class="form" style="display:none;">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" id="submit-button" class="btn btn-primary btn-full">
+                Run analysis
+            </button>
+        </form>
+    </section>
+</section>
+
+<script>
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.querySelector('input[type="file"]');
+    const form = document.getElementById('upload-form');
+
+    dropzone.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+            dropzone.innerHTML =
+                "<p class='dropzone-title'>File selected:</p>" +
+                "<p class='dropzone-filename'>" + fileInput.files[0].name + "</p>";
+            form.style.display = 'block';
+        }
+    });
+
+    dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('dragover');
+    });
+
+    dropzone.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+
+        if (e.dataTransfer.files.length > 0) {
+            fileInput.files = e.dataTransfer.files;
+            dropzone.innerHTML =
+                "<p class='dropzone-title'>File selected:</p>" +
+                "<p class='dropzone-filename'>" + fileInput.files[0].name + "</p>";
+            form.style.display = 'block';
+        }
+    });
+</script>
+{% endblock %}
+
