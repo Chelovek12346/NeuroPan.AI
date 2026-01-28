@@ -31,9 +31,8 @@ class CancerCNN(nn.Module):
         return self.fc(x)
 
 
-model_path = os.path.join(settings.BASE_DIR, r"ml\\cancer_model2.pth")
 model = CancerCNN(num_classes=5)
-model.load_state_dict(torch.load(model_path, map_location=device, weights_only=True))
+model.load_state_dict(torch.load(r"ml\cancer_model2.pth", map_location=device, weights_only=True))
 model.to(device)
 model.eval()
 
