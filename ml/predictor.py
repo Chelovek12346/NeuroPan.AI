@@ -48,14 +48,5 @@ def analyze_scan(file_path: str, modality: str) -> dict:
                 "For any health concerns, consult a qualified physician."
             )
         }
-    # TODO: Замени на реальный анализ с моделью
-    fake_result = {
-        "cancer_probability": 0.27,   # от 0 до 1
-        "stage": "N/A (research only)",
-        "tumor_type": "N/A (placeholder)",
-        "recommendation": (
-            "Undergo further and more in-depth examinations with a doctor for a final diagnosis. "
-            "For any health concerns, consult a qualified physician."
-        )
-    }
+
     return fake_result
